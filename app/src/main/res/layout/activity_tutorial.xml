@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context=".view.tutorial.TutorialActivity">
 
-
     <View
         android:id="@+id/circle_01"
         android:layout_width="410dp"
@@ -25,20 +24,19 @@
         android:layout_width="384dp"
         android:layout_height="224dp"
         android:layout_marginTop="95dp"
-        android:layout_marginEnd="30dp"
         android:background="@drawable/delivery_man_04"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/circle_02"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="92dp"
         android:background="@drawable/circle"
+        app:layout_constraintBottom_toTopOf="@+id/circle_03"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/delivery_man" />
+        app:layout_constraintTop_toBottomOf="@+id/delivery_man" />
 
     <View
         android:id="@+id/circle_03"
@@ -53,26 +51,15 @@
     <Button
         android:id="@+id/btn_login_tutorial"
         android:layout_width="314dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="48dp"
+        android:layout_height="50dp"
         android:layout_marginTop="248dp"
         android:background="@drawable/button"
-        android:text="@string/login"
+        android:text="@string/continue_text"
         android:textAllCaps="false"
         app:backgroundTint="#0C79FA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/delivery_man" />
-
-    <TextView
-        android:id="@+id/sign_up"
-        android:layout_width="59dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="350dp"
-        android:gravity="top"
-        android:text="@string/sign_up"
-        android:textAppearance="@style/sign_up"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login_tutorial"
-        app:layout_constraintStart_toStartOf="@+id/btn_login_tutorial"
         app:layout_constraintTop_toBottomOf="@id/delivery_man" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
