@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EDEDED"
-    tools:context=".view.login.LoginFragment">
+    tools:context=".view.login.sign_up.SignUpFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,32 +65,17 @@
             android:textStyle="italic"
             app:fontFamily="@font/nunito" />
 
-        <TextView
-            android:id="@+id/forgot_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:alpha="0.4"
-            android:gravity="top"
-            android:text="@string/forgot_pass"
-            android:textColor="#0C79FA"
-            android:textSize="15sp"
-            android:textStyle="italic"
-            app:fontFamily="@font/nunito" />
-
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:background="@drawable/button"
-            android:text="@string/login"
+            android:text="@string/sign_up"
             android:textAllCaps="false"
             app:backgroundTint="#0C79FA"
             app:layout_constraintStart_toStartOf="parent">
 
         </Button>
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
