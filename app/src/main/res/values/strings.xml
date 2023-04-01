@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">orderf_ood</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="forgot_pass">Forgot passcode?</string>
+    <string name="tiras_gmail">tiras@gmail.com</string>
+    <string name="delicious_food">Delicious \nfood for you</string>
+    <string name="some_id">* * * * * * * *</string>
+
+</resources>
