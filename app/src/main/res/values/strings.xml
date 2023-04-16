@@ -2,10 +2,12 @@
     <string name="app_name">orderf_ood</string>
     <string name="continue_text">Continue</string>
     <string name="sign_up">Sign up</string>
+    <string name="user_name">Username</string>
     <string name="email_address">Email address</string>
     <string name="password">Password</string>
     <string name="remember">Remember</string>
-    <string name="tiras_gmail">tiras@gmail.com</string>
+    <string name="hint_username">Input user name</string>
+    <string name="tiras_gmail">Input email</string>
     <string name="delicious_food">Delicious \nfood for you</string>
     <string name="some_id">* * * * * * * *</string>
     <string-array name="login_tab_title_array">
