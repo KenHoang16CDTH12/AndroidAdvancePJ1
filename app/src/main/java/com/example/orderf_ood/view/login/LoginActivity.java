@@ -1,6 +1,10 @@
 package com.example.orderf_ood.view.login;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -25,10 +29,17 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
     }
 
     private void initData() {
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenter(getApplicationContext(), this);
     }
 
     private void initView() {
+        // Set up touch listener for non-text box views to hide keyboard.
+        findViewById(R.id.root_layout).setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                hideSoftKeyboard(LoginActivity.this);
+                return false;
+            }
+        });
         // get
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.view_container_page);
@@ -42,5 +53,17 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
                     tab.setText(listTitle[currentPosition]);
                 }
         ).attach();
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        if(inputMethodManager.isAcceptingText()){
+            inputMethodManager.hideSoftInputFromWindow(
+                    activity.getCurrentFocus().getWindowToken(),
+                    0
+            );
+        }
     }
 }

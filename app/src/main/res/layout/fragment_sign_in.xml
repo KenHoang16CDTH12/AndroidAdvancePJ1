@@ -73,7 +73,6 @@
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="italic"
-            android:layout_margin="center"
             android:text="@string/remember" />
 
         <Button

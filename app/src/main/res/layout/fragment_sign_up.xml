@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDEDED"
-    tools:context=".view.login.SignUpFragment">
+    android:background="#EDEDED">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,6 +15,29 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.4"
+            android:gravity="top"
+            android:text="@string/user_name"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:fontFamily="@font/nunito" />
+
+        <EditText
+            android:id="@+id/edt_username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
+            android:hint="@string/hint_username"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:textStyle="italic"
+            app:fontFamily="@font/nunito" />
 
         <TextView
             android:id="@+id/tv_email"
@@ -44,7 +66,6 @@
             android:id="@+id/tv_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
             android:alpha="0.4"
             android:gravity="top"
             android:text="@string/password"
@@ -66,7 +87,7 @@
             app:fontFamily="@font/nunito" />
 
         <Button
-            android:id="@+id/btn_sign_in"
+            android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
