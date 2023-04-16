@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EDEDED"
-    tools:context=".view.login.LoginFragment">
+    tools:context=".view.login.sign_in.SignInFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,18 +65,16 @@
             android:textStyle="italic"
             app:fontFamily="@font/nunito" />
 
-        <TextView
-            android:id="@+id/forgot_pass"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:alpha="0.4"
-            android:gravity="top"
-            android:text="@string/forgot_pass"
-            android:textColor="#0C79FA"
+            android:layout_weight="1"
+            android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="italic"
-            app:fontFamily="@font/nunito" />
+            android:layout_margin="center"
+            android:text="@string/remember" />
 
         <Button
             android:id="@+id/btn_login"
@@ -84,10 +82,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:background="@drawable/button"
-            android:text="@string/login"
+            android:text="@string/continue_text"
             android:textAllCaps="false"
-            app:backgroundTint="#0C79FA"
-            app:layout_constraintStart_toStartOf="parent">
+            app:backgroundTint="#0C79FA">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_test_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/button"
+            android:text="Test Loading"
+            android:textAllCaps="false"
+            app:backgroundTint="#0C79FA">
 
         </Button>
     </LinearLayout>

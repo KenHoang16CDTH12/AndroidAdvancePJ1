@@ -12,7 +12,7 @@ import com.example.orderf_ood.view.login.LoginActivity;
 
 public class TutorialActivity extends AppCompatActivity implements ITutorialActivity {
 
-    private Button mButtonLogin;
+    private Button mContinueButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,9 @@ public class TutorialActivity extends AppCompatActivity implements ITutorialActi
     }
 
     private void initView() {
-        mButtonLogin = findViewById(R.id.btn_login_tutorial);
-        if(mButtonLogin != null){
-            mButtonLogin.setOnClickListener(view -> openLoginView());
+        mContinueButton = findViewById(R.id.btn_login_tutorial);
+        if(mContinueButton != null){
+            mContinueButton.setOnClickListener(view -> openLoginView());
         }
     }
 
