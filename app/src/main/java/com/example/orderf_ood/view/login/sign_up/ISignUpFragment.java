@@ -5,4 +5,9 @@ public interface ISignUpFragment {
     void hideLoading();
     void registerSuccess();
     void registerFailure(String message);
+    void showErrorUserNameExists(); // TODO: BTVN -> Remove
+    void showErrorEmailExists(); // TODO: BTVN -> Remove
+    // Length 8
+    void showErrorValidatePassword(); // TODO: BTVN -> Remove
+    void showErrorPasswordNotMatch(); // TODO: BTVN -> Remove
 }

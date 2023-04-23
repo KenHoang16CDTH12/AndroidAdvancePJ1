@@ -7,6 +7,7 @@
     <string name="user_name">User name</string>
     <string name="hint_username">Input user name</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="remember">Remember</string>
     <string name="tiras_gmail">Input email adress</string>
     <string name="delicious_food">Delicious \nfood for you</string>

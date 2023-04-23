@@ -33,12 +33,6 @@ public class TutorialActivity extends AppCompatActivity implements ITutorialActi
         // Open Login
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void openSignUpView() {
-        // Open Register
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        finish();
     }
 }
