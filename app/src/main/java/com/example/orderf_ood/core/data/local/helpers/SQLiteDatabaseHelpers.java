@@ -1,33 +1,56 @@
 package com.example.orderf_ood.core.data.local.helpers;
 
-// tạo database
-//Tạo bảng quản lý của database :userTable
-//quản lý version database :insert data( viet ham xu ly)
-//Query(get)data( viet ham xu ly)
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.orderf_ood.core.data.local.table.FoodProductTable;
+import com.example.orderf_ood.core.data.local.table.UserTable;
+// create database
+// create table
+// version database setting
+
 public class SQLiteDatabaseHelpers extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "app_database";
     private static int DATABASE_VERSION = 1;
 
-    private SQLiteDatabaseHelpers(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    private static volatile SQLiteDatabaseHelpers INSTANCE = null;
+
+    private SQLiteDatabaseHelpers(@Nullable Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    // public static method to retrieve the singleton instance
+    public static SQLiteDatabaseHelpers getInstance(@Nullable Context context) {
+        // Check if the instance is already created
+        if (INSTANCE == null) {
+            // synchronize the block to ensure only one thread can execute at a time
+            synchronized (SQLiteDatabaseHelpers.class) {
+                // check again if the instance is already created
+                if (INSTANCE == null) {
+                    // create the singleton instance
+                    INSTANCE = new SQLiteDatabaseHelpers(context);
+                }
+            }
+        }
+        // return the singleton instance
+        return INSTANCE;
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-    //Tao bang user_table
-        //ctrl shift F6: doi ten tat ca
+        // 1/ Tao bang UserTable
+        sqLiteDatabase.execSQL(UserTable.createTableSQL());
+        // 2/ Tao bang FoodProductTable
+        sqLiteDatabase.execSQL(FoodProductTable.createTableSQL());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-    //xu ly xoa bang neu bang da ton tai roi goi oncreate de tao bang moi
-
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + UserTable.sTableName);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FoodProductTable.sTableName);
+        onCreate(sqLiteDatabase);
     }
 }

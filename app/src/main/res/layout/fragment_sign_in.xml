@@ -73,16 +73,15 @@
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="italic"
-            android:layout_margin="center"
             android:text="@string/remember" />
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:background="@drawable/button"
-            android:text="@string/continue_text"
+            android:text="@string/sign_in"
             android:textAllCaps="false"
             app:backgroundTint="#0C79FA">
 
@@ -92,7 +91,7 @@
             android:id="@+id/btn_test_loading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:text="Test Loading"
             android:textAllCaps="false"
