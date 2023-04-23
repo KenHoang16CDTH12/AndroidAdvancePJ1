@@ -1,5 +1,6 @@
 package com.example.orderf_ood.presenter.login.sign_in;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -10,11 +11,14 @@ import com.example.orderf_ood.view.login.sign_in.ISignInFragment;
 
 public class SignInPresenter implements ISignInPresenter {
 
+    private Context mContext;
+
     private LoginInteract mLoginInteract;
 
     private ISignInFragment mIFragment;
 
-    public SignInPresenter(ISignInFragment iSignInFragment) {
+    public SignInPresenter(final Context context, ISignInFragment iSignInFragment) {
+        mContext = context;
         mIFragment = iSignInFragment;
         // init variable
         mLoginInteract = new LoginInteract();
@@ -22,28 +26,28 @@ public class SignInPresenter implements ISignInPresenter {
 
     @Override
     public void login(String email, String password, boolean hasRemember) {
+        // Step 1: display loading progress
         mIFragment.showLoading();
-        if (validateEmail(email) && validatePassword(password)) {
-            boolean isLoginResult = mLoginInteract.requestLogin(email, password);
-            if (isLoginResult) {
-                mIFragment.loginSuccess();
+        // Step 2: fake delay
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (validateEmail(email) && validatePassword(password)) {
+                boolean isLoginResult = mLoginInteract.requestLogin(mContext, email, password);
+                if (isLoginResult) {
+                    mIFragment.loginSuccess();
+                } else {
+                    mIFragment.loginFailure("Email or password is not correct");
+                }
             } else {
-                mIFragment.loginFailure("Email or password is not correct");
+                mIFragment.loginFailure("Email or password validate not correct");
             }
-        } else {
-            mIFragment.loginFailure("Email or password validate not correct");
-        }
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mIFragment.hideLoading();
-            }
-        }, 5000);
+            mIFragment.hideLoading();
+        }, 1500);
     }
 
     private boolean validateEmail(String email) {
         if (TextUtils.isEmpty(email)) {
+            // TODO: BTVN -> Remove, use login failure (message)
             mIFragment.showErrorMailValidate();
             return false;
         } else {
@@ -53,6 +57,7 @@ public class SignInPresenter implements ISignInPresenter {
 
     private boolean validatePassword(String password) {
         if (TextUtils.isEmpty(password)) {
+            // TODO: BTVN -> Remove, use login failure (message)
             mIFragment.showErrorPasswordValidate();
             return false;
         } else {
