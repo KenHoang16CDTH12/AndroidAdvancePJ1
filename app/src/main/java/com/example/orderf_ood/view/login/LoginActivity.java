@@ -1,6 +1,7 @@
 package com.example.orderf_ood.view.login;
 
 import android.os.Bundle;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -25,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginActivity {
     }
 
     private void initData() {
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenter(getApplicationContext(),this);
     }
 
     private void initView() {
