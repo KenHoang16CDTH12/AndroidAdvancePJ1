@@ -3,11 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.home.HomeFragment">
-
-        <SearchView
+    android:background="@drawable/background_home"
+    android:orientation="vertical"
+    tools:context=".view.main.home.HomeFragment">
+<!--   Search     -->
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+<!-- Grid Data List -->
+        <GridView
+            android:id="@+id/grid_list_food"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/home_search_view_margin_top" />
-
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:horizontalSpacing="8dp"
+            android:verticalSpacing="8dp"
+            android:numColumns="2"
+            android:fitsSystemWindows="true"
+            android:stretchMode="columnWidth"
+            tools:listitem="@layout/item_grid_food"/>
 </LinearLayout>

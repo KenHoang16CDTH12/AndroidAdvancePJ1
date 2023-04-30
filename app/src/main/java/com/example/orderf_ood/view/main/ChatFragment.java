@@ -1,4 +1,4 @@
-package com.example.orderf_ood.view.home;
+package com.example.orderf_ood.view.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import com.example.orderf_ood.R;
 /**
  * Home Fragment
  */
-public class HistoryFragment extends Fragment {
+public class ChatFragment extends Fragment {
 
-    public HistoryFragment() {
+    public ChatFragment() {
         // Required empty public constructor
     }
 
-    public static HistoryFragment newInstance() {
-        HistoryFragment fragment = new HistoryFragment();
+    public static ChatFragment newInstance() {
+        ChatFragment fragment = new ChatFragment();
         return fragment;
     }
 
@@ -32,6 +32,6 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false);
+        return inflater.inflate(R.layout.fragment_chat, container, false);
     }
 }
