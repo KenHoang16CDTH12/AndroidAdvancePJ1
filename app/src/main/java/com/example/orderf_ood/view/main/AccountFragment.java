@@ -1,4 +1,4 @@
-package com.example.orderf_ood.view.home;
+package com.example.orderf_ood.view.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

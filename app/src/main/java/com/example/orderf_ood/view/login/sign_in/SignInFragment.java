@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,9 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.orderf_ood.R;
 import com.example.orderf_ood.presenter.login.sign_in.SignInPresenter;
-import com.example.orderf_ood.utils.utils;
-import com.example.orderf_ood.view.home.HomeActivity;
-import com.example.orderf_ood.view.login.LoginActivity;
+import com.example.orderf_ood.view.main.HomeActivity;
 
 public class SignInFragment extends Fragment implements ISignInFragment {
     private static final String CLASS_NAME = "SignInFragment";
@@ -116,15 +113,10 @@ public class SignInFragment extends Fragment implements ISignInFragment {
 
     @Override
     public void loginSuccess() {
-        displayDialog("Information", "Login success", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // Open Register
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
+        // Open HomeActivity
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
