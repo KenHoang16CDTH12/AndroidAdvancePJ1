@@ -1,70 +1,102 @@
 package com.example.orderf_ood.view.login.sign_in;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.orderf_ood.R;
 import com.example.orderf_ood.presenter.login.sign_in.SignInPresenter;
+import com.example.orderf_ood.utils.utils;
+import com.example.orderf_ood.view.home.HomeActivity;
+import com.example.orderf_ood.view.login.LoginActivity;
 
 public class SignInFragment extends Fragment implements ISignInFragment {
+    private static final String CLASS_NAME = "SignInFragment";
     private SignInPresenter mPresenter;
-    private EditText edEmail;
-    private EditText edPassword;
-    private Button buttonLoadingTest;
-    private Button buttonSignIn;
+    private EditText mEdEmail;
+    private EditText mEdPassword;
+    private Button mButtonSignIn;
     private ProgressDialog mProgressBar;
-    private CheckBox RememberCheckBox;
+    private CheckBox mRememberCheckbox;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_sign_in, container, false);
-        buttonLoadingTest = root.findViewById(R.id.btn_test_loading);
-        buttonSignIn = root.findViewById(R.id.btn_sign_in);
-        edEmail= root.findViewById(R.id.edt_email);
-        edPassword= root.findViewById(R.id.edt_password);
-        RememberCheckBox= root.findViewById(R.id.checkBox);
+        initView(root);
         initData();
-        initView();
         return root;
     }
 
     private void initData() {
-        mPresenter = new SignInPresenter(this);
+        mPresenter = new SignInPresenter(requireContext(), this);
+        mPresenter.initData();
     }
 
-    private void initView() {
-        buttonLoadingTest.setOnClickListener(new View.OnClickListener() {
+    private void initView(View view) {
+        mButtonSignIn = view.findViewById(R.id.btn_sign_in);
+        mEdEmail = view.findViewById(R.id.edt_email);
+        mEdPassword = view.findViewById(R.id.edt_password);
+        mRememberCheckbox = view.findViewById(R.id.checkBox);
+
+        mButtonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLoading();
+                mPresenter.login(mEdEmail.getText().toString(),
+                        mEdPassword.getText().toString(),
+                        hasRemember()
+                );
             }
         });
-        buttonSignIn.setOnClickListener(new View.OnClickListener() {
+
+        mRememberCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                mPresenter.login(edEmail.getText().toString(),
-                                 edPassword.getText().toString(),
-                                 hasRememberbuttonchecked());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mPresenter.onRememberCheckedChange(isChecked);
             }
         });
         mProgressBar = new ProgressDialog(getContext());
 
     }
 
+    private void displayDialog(String title,
+                               String message,
+                               final DialogInterface.OnClickListener onCallbackClickOK) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, onCallbackClickOK)
+                .show();
+    }
+
+    @Override
+    public void loadSaveUserData(String email, String password, boolean hasRemember) {
+        mEdEmail.setText(email);
+        mEdPassword.setText(password);
+        mRememberCheckbox.setChecked(hasRemember);
+    }
+
     @Override
     public void showLoading() {
-        startLoadData();
+        mProgressBar.setCancelable(false);
+        mProgressBar.setMessage("Loading　..");
+        mProgressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressBar.show();
     }
 
     @Override
@@ -84,25 +116,28 @@ public class SignInFragment extends Fragment implements ISignInFragment {
 
     @Override
     public void loginSuccess() {
-
+        displayDialog("Information", "Login success", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Open Register
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
 
     @Override
     public void loginFailure(String message) {
-
+        displayDialog("Information", message, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d(CLASS_NAME, ".loginFailure message: " + message);
+            }
+        });
     }
 
-    public void startLoadData() {
-        mProgressBar.setCancelable(false);
-        mProgressBar.setMessage("Loading　..");
-        mProgressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        mProgressBar.show();
-    }
-    private boolean hasRememberbuttonchecked(){
-        if(RememberCheckBox.isChecked()){
-            return true;
-        }else{
-            return false;
-        }
+    private boolean hasRemember() {
+        return mRememberCheckbox.isChecked();
     }
 }

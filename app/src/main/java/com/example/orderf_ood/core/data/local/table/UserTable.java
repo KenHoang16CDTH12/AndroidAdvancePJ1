@@ -43,6 +43,33 @@ public class UserTable {
         return result > -1;
     }
 
+    public static boolean checkUserNameExists(final Context context, String username) {
+        final SQLiteDatabase db = SQLiteDatabaseHelpers.getInstance(context).getReadableDatabase();
+        // Truy van SQLite -> query
+        Cursor cursor = db.rawQuery(
+                "SELECT id FROM " + sTableName + " WHERE "
+                        + mColumnUserName + " = ?;",
+                new String[] {username}
+        );
+        final int count = cursor.getCount();
+        db.close();
+        return count > 0;
+    }
+
+    public static boolean requestLogin(final Context context, String email, String password) {
+        final SQLiteDatabase db = SQLiteDatabaseHelpers.getInstance(context).getReadableDatabase();
+        // Truy van SQLite -> query
+        Cursor cursor = db.rawQuery(
+                "SELECT id FROM " + sTableName + " WHERE "
+                        + mColumnEmail + " = ? AND "
+                        + mColumnPassword + " = ?;",
+                new String[] {email, password}
+        );
+        final int count = cursor.getCount();
+        db.close();
+        return count > 0;
+    }
+
     public static ArrayList<UserModel> getAllUser(Context context) {
         final SQLiteDatabase db = SQLiteDatabaseHelpers.getInstance(context).getReadableDatabase();
         ArrayList<UserModel> users = new ArrayList<>();
@@ -58,5 +85,18 @@ public class UserTable {
         }
         db.close();
         return users;
+    }
+
+    public static boolean checkEmailExists(Context context, String email) {
+        final SQLiteDatabase db = SQLiteDatabaseHelpers.getInstance(context).getReadableDatabase();
+        // Truy van SQLite -> query
+        Cursor cursor = db.rawQuery(
+                "SELECT id FROM " + sTableName + " WHERE "
+                        + mColumnEmail + " = ?;",
+                new String[] {email}
+        );
+        final int count = cursor.getCount();
+        db.close();
+        return count > 0;
     }
 }

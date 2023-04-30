@@ -6,49 +6,68 @@ import android.os.Looper;
 import android.text.TextUtils;
 
 import com.example.orderf_ood.core.data.local.model.UserModel;
-import com.example.orderf_ood.model.login.sign_up.ISignUpInteract;
-import com.example.orderf_ood.model.login.sign_up.SignUpInteractor;
+import com.example.orderf_ood.model.login.ILoginInteract;
+import com.example.orderf_ood.model.login.LoginInteract;
 import com.example.orderf_ood.view.login.sign_up.ISignUpFragment;
 
 public class SignUpPresenter implements ISignUpPresenter {
-    final Context context;
-    final ISignUpFragment fragment;
-    final ISignUpInteract interact;
+    final Context mContext;
+    final ISignUpFragment mFragment;
+    final ILoginInteract mInteract;
 
     public SignUpPresenter(Context context, ISignUpFragment fragment) {
-        this.context = context;
-        this.fragment = fragment;
-        interact = new SignUpInteractor();
+        this.mContext = context;
+        this.mFragment = fragment;
+        mInteract = new LoginInteract();
     }
 
     @Override
-    public void register(String username, String password, String email) {
+    public void register(String username, String email, String password, String confirmPassword) {
         // 1 show loading
-        fragment.showLoading();
-        // 2 validate
-        // TextUtils.isEmpty -> null, ""
-        if (TextUtils.isEmpty(username) && TextUtils.isEmpty(password) && TextUtils.isEmpty(email)) {
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    fragment.hideLoading();
-                }
-            }, 5000);
-            fragment.registerFailure("Register failure. Input data is null value.");
-        } else {
-            UserModel userModel = new UserModel(username, password, email);
-            boolean isResult = interact.register(context, userModel);
-            if (isResult) {
-                fragment.registerSuccess();
+        mFragment.showLoading();
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            // 2 validate
+            // TextUtils.isEmpty -> null, ""
+            if (TextUtils.isEmpty(username) && TextUtils.isEmpty(password) && TextUtils.isEmpty(email)) {
+                mFragment.registerFailure("Register failure. Input data is null value.");
             } else {
-                fragment.registerFailure("Occurs error!!!");
+                // 1/ Validate input username
+                //  -> Username length 10
+                if (username.length() < 5) {
+                    mFragment.registerFailure("Register failure.  Username must contain at least 5 characters ");
+                } else {
+                    // 2/ Kiem tra username trong database chua
+                    if (mInteract.checkUsernameExists(mContext, username)) {
+                        mFragment.registerFailure("This name already exist. Please try another name");
+                    } else {
+                        // 3/ Kiem tra email da ton tai trong database chua
+                        if(mInteract.checkEmailExists(mContext, email)){
+                            mFragment.registerFailure("This email already exist. Please try another email");
+                        }else {
+                            // 4/ Validate password
+                            // -> Condition①: Password length 8
+                            // -> Condition②: Password == ConfirmPassword
+                            if(password.length()<8){
+                                mFragment.registerFailure("Register failure. Password must contain at least 8 characters");
+                            }else{
+                                if(!password.equals(confirmPassword)){
+                                    mFragment.registerFailure("Register failure. Password do not match");
+                                }else{
+                                    UserModel userModel = new UserModel(username, password, email);
+                                    boolean isResult = mInteract.register(mContext, userModel);
+                                    if (isResult) {
+                                        mFragment.registerSuccess();
+                                    } else {
+                                        mFragment.registerFailure("Register failure. Occurs error!!!");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        }
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fragment.hideLoading();
-            }
-        }, 5000);
+            // handle hide loading
+            mFragment.hideLoading();
+        }, 2000);
     }
 }
