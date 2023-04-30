@@ -7,12 +7,23 @@
     <string name="user_name">User name</string>
     <string name="hint_username">Input user name</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="remember">Remember</string>
     <string name="tiras_gmail">Input email adress</string>
     <string name="delicious_food">Delicious \nfood for you</string>
-    <string name="some_id">* * * * * * * *</string>
+    <string name="input_password_hint">Input password</string>
+    <string name="foods">Foods</string>
+    <string name="drinks">Drinks</string>
+    <string name="snacks">Snacks</string>
+    <string name="sauces">Sauces</string>
+    <string name="title_home">Home</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_history">History</string>
+    <string name="title_acount">Account</string>
     <string-array name="login_tab_title_array">
         <item>　　Sign In　　</item>
         <item>　　Sign Up　　</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

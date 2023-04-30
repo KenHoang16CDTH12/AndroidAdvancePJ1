@@ -38,6 +38,7 @@
             android:textColor="#000000"
             android:textSize="17sp"
             android:textStyle="italic"
+            android:inputType="textEmailAddress"
             app:fontFamily="@font/nunito" />
 
         <TextView
@@ -58,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="6dp"
-            android:hint="@string/some_id"
+            android:hint="@string/input_password_hint"
             android:inputType="textPassword"
             android:textColor="#000000"
             android:textSize="17sp"
@@ -83,21 +84,8 @@
             android:background="@drawable/button"
             android:text="@string/sign_in"
             android:textAllCaps="false"
-            app:backgroundTint="#0C79FA">
+            app:backgroundTint="#0C79FA"/>
 
-        </Button>
-
-        <Button
-            android:id="@+id/btn_test_loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button"
-            android:text="Test Loading"
-            android:textAllCaps="false"
-            app:backgroundTint="#0C79FA">
-
-        </Button>
     </LinearLayout>
 
 

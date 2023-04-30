@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="drawer_menu_item_margin">20dp</dimen>
+    <dimen name="drawer_menu_space">16dp</dimen>
+    <dimen name="drawer_menu_text_size">12dp</dimen>
+    <dimen name="drawer_menu_line_margin">9.5dp</dimen>
+    // home
+    <dimen name="home_welcome_text_size">40dp</dimen>
+    <dimen name="home_container_margin">20dp</dimen>
+    <dimen name="home_search_view_margin_top">10dp</dimen>
+    <dimen name="home_wellcome_">10dp</dimen>
+</resources>

@@ -1,6 +1,7 @@
 package com.example.orderf_ood.view.login.sign_in;
 
 public interface ISignInFragment {
+    void loadSaveUserData(String email, String password, boolean hasRemember);
     void showLoading();
     void hideLoading();
     void showErrorMailValidate();
