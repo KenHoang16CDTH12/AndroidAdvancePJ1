@@ -57,6 +57,7 @@ public class SignUpPresenter implements ISignUpPresenter {
                                     boolean isResult = mInteract.register(mContext, userModel);
                                     if (isResult) {
                                         mFragment.registerSuccess();
+                                        mInteract.requestLogin(mContext,email,password);
                                     } else {
                                         mFragment.registerFailure("Register failure. Occurs error!!!");
                                     }

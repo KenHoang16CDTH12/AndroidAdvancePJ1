@@ -8,8 +8,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello, Drawer!"
+        android:text="Hello, this is Drawer header!"
         android:id="@+id/textView"
+        android:textSize="20dp"
         android:padding="16dp"
+        android:gravity="center"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>
