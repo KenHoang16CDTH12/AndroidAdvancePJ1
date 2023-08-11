@@ -20,6 +20,19 @@
     <string name="title_chat">Chat</string>
     <string name="title_history">History</string>
     <string name="title_acount">Account</string>
+    <!--    product info-->
+    <string name="id">ID</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="quantity">Quantity</string>
+    <string name="url">URL</string>
+    <string name="price">Price</string>
+
+    <!--    drawer menu-->
+    <string name="add_product">Add product</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Closed</string>
+
     <string-array name="login_tab_title_array">
         <item>　　Sign In　　</item>
         <item>　　Sign Up　　</item>

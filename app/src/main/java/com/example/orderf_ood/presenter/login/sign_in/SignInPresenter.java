@@ -31,6 +31,7 @@ public class SignInPresenter implements ISignInPresenter {
         final String password = SharedPrefrenceHelpers.getInstance().getPassword(mContext);
         final boolean hasRemember = SharedPrefrenceHelpers.getInstance().hasRemember(mContext);
         mIFragment.loadSaveUserData(email, password, hasRemember);
+        login(email, password, hasRemember);
     }
 
     @Override
@@ -46,20 +47,22 @@ public class SignInPresenter implements ISignInPresenter {
         mIFragment.showLoading();
         // Step 2: fake delay
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            if (validateEmail(email) && validatePassword(password)) {
-                boolean isLoginResult = mLoginInteract.requestLogin(mContext, email, password);
-                if (isLoginResult) {
-                    if (hasRemember) {
-                        SharedPrefrenceHelpers.getInstance().setEmail(mContext, email);
-                        SharedPrefrenceHelpers.getInstance().setPassword(mContext, password);
-                        SharedPrefrenceHelpers.getInstance().setRememberUserInformation(mContext, hasRemember);
+            if (email != null || password != null) {
+                if (validateEmail(email) && validatePassword(password)) {
+                    boolean isLoginResult = mLoginInteract.requestLogin(mContext, email, password);
+                    if (isLoginResult) {
+                        if (hasRemember) {
+                            SharedPrefrenceHelpers.getInstance().setEmail(mContext, email);
+                            SharedPrefrenceHelpers.getInstance().setPassword(mContext, password);
+                            SharedPrefrenceHelpers.getInstance().setRememberUserInformation(mContext, hasRemember);
+                        }
+                        mIFragment.loginSuccess();
+                    } else {
+                        mIFragment.loginFailure("Email or password is not correct");
                     }
-                    mIFragment.loginSuccess();
                 } else {
-                    mIFragment.loginFailure("Email or password is not correct");
+                    mIFragment.loginFailure("Email or password validate not correct");
                 }
-            } else {
-                mIFragment.loginFailure("Email or password validate not correct");
             }
 
             mIFragment.hideLoading();
