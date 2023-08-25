@@ -1,5 +1,7 @@
 package com.example.orderf_ood.view.cart;
 
+import static com.example.orderf_ood.view.common.modal.ModalUtils.showDialogPlaceOrder;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -57,6 +59,13 @@ public class CartListActivity extends AppCompatActivity {
         mRecyclerCartView.setAdapter(mCartListAdapter);
 
         mCartListAdapter.notifyDataSetChanged();
+
+        buttonOder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogPlaceOrder(CartListActivity.this);
+            }
+        });
 
     }
 

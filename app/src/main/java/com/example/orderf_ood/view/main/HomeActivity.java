@@ -9,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,7 +22,9 @@ import com.example.orderf_ood.R;
 import com.example.orderf_ood.core.data.local.model.FoodModel;
 import com.example.orderf_ood.view.cart.CartListActivity;
 import com.example.orderf_ood.view.drawerMenu.AddProductActivity;
+import com.example.orderf_ood.view.drawerMenu.MapViewActivity;
 import com.example.orderf_ood.view.home.HomeFragment;
+import com.example.orderf_ood.view.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +36,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public ActionBarDrawerToggle toggle;
     public Toolbar toolbar;
     private ImageView imageViewCartList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,45 +78,46 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         HomeFragment fragment = new HomeFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content,fragment,"");
+        fragmentTransaction.replace(R.id.content, fragment, "");
         fragmentTransaction.commit();
 
         bottomNavigationView.setOnItemSelectedListener(bottomSelectedListener);
 
     }
-     private BottomNavigationView.OnItemSelectedListener  bottomSelectedListener = new NavigationBarView.OnItemSelectedListener(){
-         @Override
-         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-             switch (menuItem.getItemId()){
-                 case R.id.navigation_chat:
-                     ChatFragment fragment2 = new ChatFragment();
-                     FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
-                     fragmentTransaction2.replace(R.id.content,fragment2,"");
-                     fragmentTransaction2.commit();
-                     break;
-                 case R.id.navigation_history:
-                     HistoryFragment fragment3= new HistoryFragment();
-                     FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
-                     fragmentTransaction3.replace(R.id.content,fragment3,"");
-                     fragmentTransaction3.commit();
-                     break;
-                 case R.id.navigation_account:
-                     AccountFragment fragment4 = new AccountFragment();
-                     FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
-                     fragmentTransaction4.replace(R.id.content,fragment4,"");
-                     fragmentTransaction4.commit();
-                     break;
-                 default:
-                     HomeFragment fragment5 = new HomeFragment();
-                     FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
-                     fragmentTransaction5.replace(R.id.content,fragment5,"");
-                     fragmentTransaction5.commit();
-                     break;
-             }
-             Log.d("log", "tabbar menuitem id: "+menuItem.getItemId());
-             return false;
-         }
-     };
+
+    private BottomNavigationView.OnItemSelectedListener bottomSelectedListener = new NavigationBarView.OnItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_chat:
+                    ChatFragment fragment2 = new ChatFragment();
+                    FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction2.replace(R.id.content, fragment2, "");
+                    fragmentTransaction2.commit();
+                    break;
+                case R.id.navigation_history:
+                    HistoryFragment fragment3 = new HistoryFragment();
+                    FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction3.replace(R.id.content, fragment3, "");
+                    fragmentTransaction3.commit();
+                    break;
+                case R.id.navigation_account:
+                    AccountFragment fragment4 = new AccountFragment();
+                    FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction4.replace(R.id.content, fragment4, "");
+                    fragmentTransaction4.commit();
+                    break;
+                default:
+                    HomeFragment fragment5 = new HomeFragment();
+                    FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction5.replace(R.id.content, fragment5, "");
+                    fragmentTransaction5.commit();
+                    break;
+            }
+            Log.d("log", "tabbar menuitem id: " + menuItem.getItemId());
+            return false;
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -123,7 +129,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.add_product_item:
                 //Move to AddProductActivity
                 Intent intent = new Intent(this, AddProductActivity.class);
@@ -131,10 +137,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.close();
                 break;
             case R.id.item_2:
-                Toast.makeText(this,"item 2 clicked",Toast.LENGTH_LONG).show();
+                Intent intent1 = new Intent(this, LoginActivity.class);
+                startActivity(intent1);
+                // finish current activity
+                finish();
                 break;
             case R.id.item_3:
-                //TODO: add action
+                // xu ly hien thi man hinh map
+                Intent intentMap = new Intent(HomeActivity.this, MapViewActivity.class);
+                startActivity(intentMap);
                 break;
         }
         return true;

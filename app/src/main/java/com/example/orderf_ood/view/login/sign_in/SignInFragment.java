@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -127,9 +125,6 @@ public class SignInFragment extends Fragment implements ISignInFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.d(CLASS_NAME, ".loginFailure message: " + message);
-                Animation animation = AnimationUtils.loadAnimation(getContext(),R.anim.shake);
-                mEdEmail.setAnimation(animation);
-                mEdPassword.setAnimation(animation);
             }
         });
     }

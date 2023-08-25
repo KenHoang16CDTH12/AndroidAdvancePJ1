@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,6 +83,7 @@ public class CustomFoodListAdapter extends RecyclerView.Adapter<CustomFoodListAd
             @Override
             public void onClick(View v) {
                 listener.onItemClick(foodModel);
+
             }
         });
     }
