@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
     tools:context=".view.home.HomeFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Account fragment" />
-    <Button
-        android:id="@+id/button_map"
+        android:id="@+id/account_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="MAP"
-        android:textColor="@color/white"/>
+        android:text="Account information"
+        android:layout_centerHorizontal="true"
+        android:textSize="35sp"
+        android:textStyle="bold"/>
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/account_image"
+        android:layout_width="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/account_title"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/baseline_face_retouching_natural_24"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:id="@+id/account_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_below="@id/account_image"
+        android:textSize="35sp" />
+
+    <Button
+        android:id="@+id/account_logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button"
+        android:text="Log out" />
+
+</RelativeLayout>

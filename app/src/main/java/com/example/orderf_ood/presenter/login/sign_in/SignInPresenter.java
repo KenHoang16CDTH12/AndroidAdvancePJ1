@@ -31,7 +31,7 @@ public class SignInPresenter implements ISignInPresenter {
         final String password = SharedPrefrenceHelpers.getInstance().getPassword(mContext);
         final boolean hasRemember = SharedPrefrenceHelpers.getInstance().hasRemember(mContext);
         mIFragment.loadSaveUserData(email, password, hasRemember);
-        login(email, password, hasRemember);
+//        login(email, password, hasRemember);
     }
 
     @Override
