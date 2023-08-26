@@ -9,6 +9,7 @@ public class SharedPrefrenceHelpers {
     private static final String SPREF_SET_REMEMBER_KEY = "SPREF_SET_REMEMBER_KEY";
     private static final String SPREF_SET_EMAIL_KEY = "SPREF_SET_EMAIL_KEY";
     private static final String SPREF_SET_PASSWORD_KEY = "SPREF_SET_PASSWORD_KEY";
+    private static final String SPREF_SET_USER_NAME_KEY = "SPREF_SET_USER_NAME_KEY";
 
     private static volatile SharedPrefrenceHelpers INSTANCE = null;
 
@@ -50,9 +51,21 @@ public class SharedPrefrenceHelpers {
         editor.apply(); // commit changes
     }
 
+    public void setUserName(final Context context, String name) {
+        SharedPreferences sharedpreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(SPREF_SET_USER_NAME_KEY, name);
+        editor.apply(); // commit changes
+    }
+
     public String getEmail(final Context context) {
         SharedPreferences sharedpreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return sharedpreferences.getString(SPREF_SET_EMAIL_KEY, null);
+    }
+
+    public String getUserName(final Context context) {
+        SharedPreferences sharedpreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return sharedpreferences.getString(SPREF_SET_USER_NAME_KEY, null);
     }
 
     public void setPassword(final Context context, String password) {

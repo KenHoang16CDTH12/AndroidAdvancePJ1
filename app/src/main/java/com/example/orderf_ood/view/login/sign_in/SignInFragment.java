@@ -1,5 +1,7 @@
 package com.example.orderf_ood.view.login.sign_in;
 
+import static com.example.orderf_ood.view.tutorial.TutorialActivity.accessToken;
+
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +22,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.orderf_ood.R;
 import com.example.orderf_ood.presenter.login.sign_in.SignInPresenter;
+import com.example.orderf_ood.view.login.LoginActivity;
 import com.example.orderf_ood.view.main.HomeActivity;
+import com.example.orderf_ood.view.tutorial.TutorialActivity;
+import com.facebook.AccessToken;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 public class SignInFragment extends Fragment implements ISignInFragment {
     private static final String CLASS_NAME = "SignInFragment";
@@ -30,6 +39,7 @@ public class SignInFragment extends Fragment implements ISignInFragment {
     private Button mButtonSignIn;
     private ProgressDialog mProgressBar;
     private CheckBox mRememberCheckbox;
+    private LoginButton mFacebookLoginButton;
 
     @Nullable
     @Override
@@ -50,6 +60,7 @@ public class SignInFragment extends Fragment implements ISignInFragment {
         mEdEmail = view.findViewById(R.id.edt_email);
         mEdPassword = view.findViewById(R.id.edt_password);
         mRememberCheckbox = view.findViewById(R.id.checkBox);
+        mFacebookLoginButton = view.findViewById(R.id.facebook_login_button);
 
         mButtonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +79,7 @@ public class SignInFragment extends Fragment implements ISignInFragment {
             }
         });
         mProgressBar = new ProgressDialog(getContext());
-
+        settingFacebookLogin();
     }
 
     private void displayDialog(String title,
@@ -131,5 +142,40 @@ public class SignInFragment extends Fragment implements ISignInFragment {
 
     private boolean hasRemember() {
         return mRememberCheckbox.isChecked();
+    }
+    private void settingFacebookLogin() {
+//        mFacebookLoginButton.setPermissions("email","public_profile");
+        accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if (!isLoggedIn) {
+            // Callback registration
+            mFacebookLoginButton.registerCallback(TutorialActivity.mCallbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    AccessToken accessToken = loginResult.getAccessToken();
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                    Log.d("test","settingFacebookLogin dang nhap thanh cong");
+                }
+
+                @Override
+                public void onCancel() {
+                    // App code
+                    Log.d("test","settingFacebookLogin huy dang nhap");
+                }
+
+                @Override
+                public void onError(FacebookException exception) {
+                    // App code
+                    Log.d("test","settingFacebookLogin dang nhap that bai");
+                }
+            });
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        TutorialActivity.mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

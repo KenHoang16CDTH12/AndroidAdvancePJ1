@@ -48,18 +48,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/delivery_man" />
 
+
     <Button
         android:id="@+id/btn_login_tutorial"
         android:layout_width="314dp"
         android:layout_height="50dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="180dp"
         android:background="@drawable/button"
         android:text="@string/continue_text"
         android:textAllCaps="false"
         app:backgroundTint="#0C79FA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/delivery_man" />
+        app:layout_constraintTop_toBottomOf="@id/delivery_man"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebook_login_button"
+        android:layout_width="315dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button"
+        android:text="facebook login"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_tutorial" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

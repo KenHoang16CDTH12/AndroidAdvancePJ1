@@ -38,4 +38,7 @@
         <item>　　Sign Up　　</item>
     </string-array>
     <string name="mapbox_access_token">pk.eyJ1IjoiZGluaGtpZXVtaSIsImEiOiJjbGw3bjNvdXAwOTdnM2trZG5rbmlyNjV3In0.JXnLFZZ0L50ioujqxol1Cg</string>
+    <string name="facebook_app_id">811731940442713</string>
+    <string name="fb_login_protocol_scheme">fb811731940442713</string>
+    <string name="facebook_client_token">33fe17312913fb4b0519d7e223901f23</string>
 </resources>

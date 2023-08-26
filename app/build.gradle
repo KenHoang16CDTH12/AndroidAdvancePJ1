@@ -43,4 +43,7 @@ dependencies {
     // country box
     implementation 'com.hbb20:android-country-picker:0.0.7'
     implementation 'com.mapbox.maps:android:10.15.0'
+
+    //facebook
+    implementation 'com.facebook.android:facebook-login:latest.release'
 }
